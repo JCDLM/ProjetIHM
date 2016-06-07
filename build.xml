@@ -1,0 +1,42 @@
+<project>
+
+<!-- COMPILE -->
+    <target name="compile">
+        <mkdir dir="build"/>
+        <mkdir dir="build/class"/>
+        <javac srcdir="src" destdir="build/class"/>
+    </target>
+
+<!-- RUN -->
+    <target name="run" depends="jar">
+        <java jar="build/jar/Player.jar" fork="true"/>
+    </target>
+
+<!-- CREATE THE JAVADOC -->
+    <target name="javadoc" description="make the javadoc ">
+            <javadoc sourcepath="src" access="private" author="true"
+              version="true" destdir="javaDoc"/>
+    </target>
+
+<!-- CREATE THE JAR -->
+    <target name="jar" depends="compile">
+        <mkdir dir="build/jar"/>
+        <jar destfile="build/jar/***.jar" basedir="build/class">
+            <manifest>
+                <attribute name="Main-Class" value="*****"/>
+            </manifest>
+        </jar> 
+    </target>
+
+<!-- CLEAN THE BUILD -->
+    <target name="cleanBuild">
+	<delete dir="build"/>
+    </target>
+
+<!-- CLEAN THE JAVADOC -->
+    <target name="cleanJavadoc">
+	<delete dir="javaDoc"/>
+    </target>
+
+</project>
+ 
